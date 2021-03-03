@@ -467,21 +467,21 @@ class TownView {
 
   preloadImages() {
     let images = {
-      1: "/assets/back.png",
-      2: "/assets/church.png",
-      3: "/assets/fire.png",
-      4: "/assets/house_1.png",
-      5: "/assets/house_2.png",
-      6: "/assets/house_3.png",
-      7: "/assets/RIP.png",
-      8: "/assets/satyr_dying.png",
-      9: "/assets/satyr_walk_left.png",
-      10: "/assets/satyr_walk.png",
-      11: "/assets/satyr.png",
-      12: "/assets/stone.jpg",
-      13: "/assets/tree_1.png",
-      14: "/assets/tree_2.png",
-      15: "/assets/tree_3.png",
+      1: "./assets/back.png",
+      2: "./assets/church.png",
+      3: "./assets/fire.png",
+      4: "./assets/house_1.png",
+      5: "./assets/house_2.png",
+      6: "./assets/house_3.png",
+      7: "./assets/RIP.png",
+      8: "./assets/satyr_dying.png",
+      9: "./assets/satyr_walk_left.png",
+      10: "./assets/satyr_walk.png",
+      11: "./assets/satyr.png",
+      12: "./assets/stone.jpg",
+      13: "./assets/tree_1.png",
+      14: "./assets/tree_2.png",
+      15: "./assets/tree_3.png",
     };
 
     for (let key of Object.keys(images)) {
