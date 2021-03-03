@@ -28,7 +28,6 @@ body {
   background-size: cover;
   font-family: "MyWebFont";
   height: 100%;
-  overflow: hidden;
 }
 
 .game__menu {
