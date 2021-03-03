@@ -1,0 +1,496 @@
+*{
+  margin: 0;
+  padding: 0;
+
+}
+
+@font-face{
+
+  font-family: 'MyWebFont';
+  
+  src: url('assets/fonts/BlackRose-2Onld.ttf') format('truetype'); /*stranger creature*/
+  
+  font-weight: normal;
+  
+  font-style: normal;
+  
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(assets/back.png);
+  background-size: cover;
+  font-family: "MyWebFont";
+  height: 100%;
+  overflow: hidden;
+}
+
+.game__menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: calc((100% - 90vmin) / 2);
+  background-color: rgba(0, 0, 0, 0.493);
+  color: rgba(255, 251, 245, 0.815);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#menu__toggle {
+  display: none;
+}
+
+.menu__btn {
+  display: none;
+}
+
+.geme__controller__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.game__controller {
+  padding: 10px 20px;
+  font-family: 'MyWebFont';
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  font-size: 6vmin;
+}
+
+.game__controller:focus{
+  outline: none;
+}
+
+.game__controller:hover {
+  cursor: pointer;
+  animation-duration: 0.8s;
+  animation-iteration-count: infinite;
+  animation-name: clr;
+  animation-direction: alternate;
+}
+
+span {
+  display: block;
+}
+
+.game__score--count {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  font-size: 4vmin;
+}
+
+.game__item--active {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 4vmin;
+}
+
+#active {
+  height: 15vmin;
+  width: 15vmin;
+  margin-top: 10px;
+}
+
+.menu__item__wrapper {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+
+.menu__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 90%;
+  width: 60vw;
+  background-color: rgb(243, 165, 76);
+  border-radius: 20px;
+}
+
+.menu__item__title {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.close__btn {
+  position: absolute;
+  right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.field {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  width: 90vmin;
+  height: 90vmin;
+  border: 2px solid black;
+  background-image: url(assets/stone.jpg);
+  background-size: contain;
+  margin-left: calc((100% - 90vmin) / 2);
+  transform: translateZ(0);
+}
+
+.cell {
+  width: 15vmin;
+  height: 15vmin;
+}
+
+.item__active {
+  background-color: rgba(0, 0, 0, 0.507);
+  width: 15vmin;
+  height: 15vmin;
+}
+
+.point__active {
+  position: absolute;
+  top: 0;
+  color: white;
+  font-size: 2rem;
+}
+
+.going > img {
+  animation: fromHiddentoViewed 0.99s linear 1;
+}
+
+.new__page__wrapper {
+  width: 80%;
+}
+
+.result {
+  display: flex;
+  justify-content: space-between;
+} 
+
+.win__resuls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.winner__satyr {
+  width: 260px;
+  height: 210px;
+  background: url('assets/satyr_walk.png') 0 0; 
+  background-size: 1700% 100%;
+  background-repeat: no-repeat;
+  animation: enemyWalk 1s steps(16) alternate infinite;
+  transform: translateZ(0);
+}
+
+.winner__win__title, .winner__loose__title  {
+  font-size: 1.4rem;
+}
+
+.winner__name__title {
+  margin-top: 10px;
+}
+
+.winner__name__subtitle {
+  color: rgba(51, 48, 48, 0.705);
+}
+
+.winner__name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  height: 40px;
+  width: 100%;
+  background-color: white;
+  margin: 20px;
+}
+
+.close__over {
+  padding: 10px 20px;
+  font-size: 2rem;
+  margin-top: 50px;
+}
+
+@media (orientation: portrait) {
+  .game__menu {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    height: auto;
+  }
+
+  .menu__btn {
+    display: flex; 
+    align-items: center; 
+    position: absolute;
+    top: 2.5vmin;
+    right: calc(50% - 2.5vmin);
+    width: 5vmin;
+    height: 5vmin;
+    cursor: pointer;
+    z-index: 1;
+    transition-duration: .25s;
+  }
+
+  .menu__btn > span,
+  .menu__btn > span::before,
+  .menu__btn > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #F1CDB3;
+  }
+
+  .menu__btn > span::before {
+    content: '';
+    top: -1.5vmin;
+  }
+
+  .menu__btn > span::after {
+    content: '';
+    top: 1.5vmin;
+  }
+
+  #menu__toggle:checked ~ .menu__btn  {
+    transform: rotate(90deg);
+    transition-duration: .25s;
+  }
+
+  #menu__toggle:checked ~ .menu__btn > span {
+      background-color: #F1CDB3;
+  }
+
+  #menu__toggle:checked ~ .menu__btn > span::before {
+      background-color: #F1CDB3;
+  }
+
+  #menu__toggle:checked ~ .menu__btn > span::after {
+      background-color: #F1CDB3;
+  }
+
+  #menu__toggle:checked ~ .game__menu {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  #menu__toggle:checked ~ .game__menu > .geme__controller__wrapper {
+    display: flex;
+    width: 90vw;
+    margin-top: 10vh;
+  }
+
+  #menu__toggle:checked ~ .game__menu> .game__item--active > #active {
+    width: 30vw;
+    height: 30vw;
+    margin-top: 3vmin;
+  }
+
+  #active {
+    width: 10vmin;
+    height: 10vmin;
+    margin: 0;
+    margin-right: 2vmin;
+  }
+
+  .menu__item {
+    width: 90vw;
+  }
+
+  .game__score--count {
+    width: auto;
+    margin-left: 2vmin;
+  }
+
+  .geme__controller__wrapper {
+    display: none;
+  }
+
+  .image__pref {
+    display: none;
+  }
+
+  .field {
+    margin: 0;
+  }
+}
+
+@keyframes animationDying {
+  from { 
+    transform: translateZ(0);
+    background: url('assets/satyr_dying.png') 0 0; 
+    background-size: 1500% 100%;
+  }
+
+  to { 
+    transform: translateZ(0);
+    background: url('assets/satyr_dying.png') 100% 0; 
+    background-size: 1500% 100%;
+  }
+} 
+
+@keyframes to-left {
+  from {
+    transform: translateZ(0) translateX(100%);
+  }
+
+  to {
+    transform: translateZ(0) translateX(0);
+  }
+}
+
+@keyframes to-right {
+  from {
+    transform: translateZ(0) translateX(-100%);
+  }
+
+  to {
+    transform: translateZ(0) translateX(0);
+  }
+}
+
+@keyframes to-top {
+  from {
+    transform: translateZ(0) translateY(-100%);
+  }
+
+  to {
+    transform: translateZ(0) translateY(0);
+  }
+}
+
+@keyframes to-bottom {
+  from {
+    transform: translateZ(0) translateY(100%);
+  }
+
+  to {
+    transform: translateZ(0) translateY(0);
+  }
+}
+
+@keyframes enemyWalk {
+  from {
+    background: url('assets/satyr_walk.png') 0 0; 
+    background-size: 1700% 100%;
+    background-repeat: no-repeat;
+  } 
+
+  to {
+    background: url('assets/satyr_walk.png') 94% 0; 
+    background-size: 1700% 100%;
+    background-repeat: no-repeat;
+  }
+}
+
+@keyframes enemyWalkLeft {
+  from {
+    background: url('assets/satyr_walk_left.png') 0 0; 
+    background-size: 1700% 100%;
+    background-repeat: no-repeat;
+  } 
+
+  to {
+    background: url('assets/satyr_walk_left.png') 94% 0; 
+    background-size: 1700% 100%;
+    background-repeat: no-repeat;
+  }
+}
+
+@keyframes fromHiddentoViewed {
+  0% {
+    opacity: 0;
+  }
+
+  99% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes animationFire {
+  from {
+    background: url('assets/fire.png') 0 0; 
+    background-size: 600% 100%;
+    background-repeat: no-repeat;
+  }
+
+  to {
+    background: url('assets/fire.png') 100% 0; 
+    background-size: 600% 100%;
+    background-repeat: no-repeat;
+  }
+}
+
+@keyframes pointsAnime {
+  from {
+    transform: translateZ(0) translateY(100%);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateZ(0) translateY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes showMenuItem {
+  from {
+    transform: translateZ(0) translateY(0%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateZ(0) translateY(100%);
+    opacity: 1;
+  }
+}
+
+@keyframes closeMenuItem {
+  from {
+    transform: translateZ(0) translateY(100%);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateZ(0) translateY(0%);
+    opacity: 0;
+  }
+}
+
+@keyframes clr {
+  from {
+    color: white;
+  }
+
+  to {
+    color:  #850505c5;
+  }
+}
