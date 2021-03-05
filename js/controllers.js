@@ -195,7 +195,7 @@ class TownController {
       let audio = new Audio();
       wrap.style.animation = "fromViewedtoHidden 0.5s linear 1 forwards"
       setTimeout(() => wrap.style.display = "none", 500);
-      audio.src = "/assets/sounds/main.mp3";
+      audio.src = "./assets/sounds/main.mp3";
       audio.loop = true;
       audio.volume = 0.5;
       audio.play();
