@@ -466,6 +466,7 @@ class TownView {
 
   preloadImages() {
     let images = {
+      prev: "./assets/prev.jpg",
       1: "./assets/back.jpg",
       2: "./assets/church.png",
       3: "./assets/fire.png",
