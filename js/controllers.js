@@ -21,6 +21,7 @@ class TownController {
     this.addWindowListeners();
     this.addTouchEvents(); 
     this.rememberWindowSize();
+    this.hidePreloadPage()
     if (window.location.hash.substr(1) !== "Main" &&
         window.location.hash.substr(1) !== "")
       this.switchToStateFromURLHash();
@@ -146,6 +147,15 @@ class TownController {
         this.windowH = h;
       }
     });
+
+    window.addEventListener("load", () => {
+      let preloadWpap = document.querySelector(".preload__view");
+      let preload = document.querySelector(".overlay-loader");
+      let preBtn = document.querySelector(".preload__btn");
+
+      preloadWpap.removeChild(preload);
+      preBtn.classList.remove("preload__item--unactive");
+    });
   }
 
   addTouchEvents() {
@@ -177,6 +187,19 @@ class TownController {
                this.onTouchStart - this.onTouchEnd > 50) {
       this.switchToScorePage();
     }
+  }
+
+  hidePreloadPage() {
+    document.querySelector(".preload__btn").addEventListener("click", () => {
+      let wrap = document.querySelector(".preload__view");
+      let audio = new Audio();
+      wrap.style.animation = "fromViewedtoHidden 0.5s linear 1 forwards"
+      setTimeout(() => wrap.style.display = "none", 500);
+      audio.src = "/assets/sounds/main.mp3";
+      audio.loop = true;
+      audio.volume = 0.5;
+      audio.play();
+    })
   }
 
   switchToStateFromURLHash() {

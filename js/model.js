@@ -80,19 +80,21 @@ class Town {
   addItems() {
     this.items.push(this.bush);
     this.items.push(this.grass);
+    this.items.push(this.grass);
     this.items.push(this.bear);
     this.items.push(this.grass);
     this.items.push(this.house);
     this.items.push(this.grass);
-    this.items.push(this.bush);
     this.items.push(this.grass);
     this.items.push(this.bush);
+    this.items.push(this.bush);
+    this.items.push(this.tree);
     this.items.push(this.tree);
   }
 
   addElemsOnStartScreen() {
-    let minItemsAtStart = 5, //5
-        maxItemsAtStart = 8, //8
+    let minItemsAtStart = 5,
+        maxItemsAtStart = 8,
         itemsCount = this.getRandomNumber(minItemsAtStart, maxItemsAtStart);
 
     for (let i = 0; i < itemsCount; i++) 
@@ -191,6 +193,7 @@ class Town {
     if (this.activeElem === this.palace || this.activeElem === this.church) {
       this.coincidences.clear();
       this.addPoints = false;
+      this.getRandomElem();
       return;
     }
 
