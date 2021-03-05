@@ -16,7 +16,7 @@ class TownView {
   }
 
   init() {
-    document.body.innerHTML = `
+    document.body.innerHTML += `
     <input id="menu__toggle" type="checkbox" />
     <label class="menu__btn" for="menu__toggle">
       <span></span>
@@ -28,7 +28,6 @@ class TownView {
     this.addMenuPages();
     this.addWinPage();
     this.preloadImages();
-    //this.addScorePage();
   }
 
   start(model, controllers, obj) {
@@ -467,7 +466,7 @@ class TownView {
 
   preloadImages() {
     let images = {
-      1: "./assets/back.png",
+      1: "./assets/back.jpg",
       2: "./assets/church.png",
       3: "./assets/fire.png",
       4: "./assets/house_1.png",
