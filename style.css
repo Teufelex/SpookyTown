@@ -227,6 +227,7 @@ span {
   width: 80%;
   font-weight: bold;
   letter-spacing: 3px;
+  transform: translateZ(0);
 }
 
 .result {
