@@ -12,6 +12,7 @@ class TownView {
     this.stringName = "POTOTSKAYA_SPOOKY_TOWN";
     this.totalPoints = 0;
     this.score = null;
+    this.sound = true; 
     this.clickSound = new Audio("assets/sounds/click.mp3");
   }
 
@@ -27,6 +28,7 @@ class TownView {
     this.addMenu();
     this.addMenuPages();
     this.addWinPage();
+    this.addSoundBtn();
     this.preloadImages();
   }
 
@@ -53,16 +55,7 @@ class TownView {
 
   positionCell() {
     let field = this.model.getField();
-    for (let i = field.length - 1; i >= 0; i--) {
-      for(let j = field.length - 1; j >= 0; j--) {
-        let cell = document.getElementById(`${i + "" + j}`),
-            cellTop = cell.offsetTop,
-            cellLeft = cell.offsetLeft;
-  
-        cell.style.top = cellTop + "px";
-        cell.style.left = cellLeft + "px";
-      }
-    }
+    this.resize();
 
     for (let i = field.length - 1; i >= 0; i--) {
       for(let j = field.length - 1; j >= 0; j--) {
@@ -130,6 +123,17 @@ class TownView {
     rulesWrap.appendChild(closeRulesBtn);
     rulesPage.appendChild(rulesWrap);
     document.body.appendChild(rulesPage);
+  }
+
+
+  addSoundBtn() {
+    let soundWrap = document.createElement("div");
+    soundWrap.classList.add("game__sound__wrapper");
+    soundWrap.innerHTML = `
+    <button class="sound__btn music__btn" title="Click here to play or stop music">&#9835;</button>
+    <button class="sound__btn sound" title="Click here to to play or stop sound">&#9834;</button>`;
+
+    document.body.appendChild(soundWrap);
   }
 
   addWinPage() {
@@ -297,7 +301,13 @@ class TownView {
 
     wrapper.style.animation = "showMenuItem 0.5s linear 1 forwards";
     scorePageTitle.innerHTML = "Rules";
-    scorePage.innerHTML = "Loading...";
+    scorePage.innerHTML = `The premise of the game is that the player must build a new settlement. The game takes place on a 6×6 grid of fields on which some tiles are randomly placed.
+    <br>
+    <br>
+    Players are given random tiles, most often grass tiles, that they must place on the grid. When three or more identical tiles adjoin, they merge into one more advanced tile at the position of the last tile placed: three grass tiles become a pumpkin, three pumpkins a mushroom, three mushrooms a house, and so forth. Merging four or more tiles earns points. Satyr move to a neighboring square each turn, blocking building sites until they are trapped. When they are trapped, they turn into a gravestone. Three gravestones make a black cat. 
+    <br>
+    <br>
+    The objective of the game is to upgrade one's settlement's tiles to as high a rank as possible, earning an accordingly high score. The game ends if all fields of the grid are filled.`;
   }
 
   getMain() {
@@ -320,7 +330,6 @@ class TownView {
   }
 
   lockGetReady(callresult) {
-    console.log("here i am")
     if (callresult.error !== undefined) {
       alert(callresult.error);
       return;
@@ -351,7 +360,6 @@ class TownView {
 
   addResult() {
     let innerContent = document.querySelector(".win__resuls");
-    console.log(innerContent)
     innerContent.innerHTML = `
     <div class="winner__satyr"></div>
     <p class="winner__win__title">Congrats! Give us your name to save result</p>
@@ -378,7 +386,6 @@ class TownView {
     this.score = this.score.slice(0, 20);
     this.winPage.style.animation = "closeMenuItem 0.5s linear 1 forwards";
     this.addScore(this.score);
-    //this.model.newGame();
   }
 
   escapeHTML(text) {
@@ -456,7 +463,7 @@ class TownView {
 
   playSound() {
     this.clickSound.currentTime = 0;
-    this.clickSound.play();
+    if (this.sound) this.clickSound.play();
   }
 
   vibro() {
@@ -490,7 +497,25 @@ class TownView {
     }
   }
 
+  updateSoundStat() {
+    this.sound = !this.sound;
+  }
+
   getField() {
     return this.field;
+  }
+
+  resize() {
+    let matrix = this.model.getField();
+    let w = this.field.offsetWidth;
+    let cellSize = w / matrix.length;
+
+    for(let i = 0; i < matrix.length; i++) {
+      for(let j = 0; j < matrix.length; j++) {
+        let cell = document.getElementById(`${i + "" + j}`);
+        cell.style.top = 15 * i + "vmin";
+        cell.style.left = 15 * j + "vmin";
+      }
+    }
   }
 }

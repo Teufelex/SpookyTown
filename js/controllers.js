@@ -7,6 +7,8 @@ class TownController {
     this.windowH = null;
     this.field = null;
     this.model = null;
+    this.audio = null;
+    this.music = true;
   }
 
   start(field, model) {
@@ -21,7 +23,8 @@ class TownController {
     this.addWindowListeners();
     this.addTouchEvents(); 
     this.rememberWindowSize();
-    this.hidePreloadPage()
+    this.hidePreloadPage();
+    this.addSoundControllers();
     if (window.location.hash.substr(1) !== "Main" &&
         window.location.hash.substr(1) !== "")
       this.switchToStateFromURLHash();
@@ -174,6 +177,26 @@ class TownController {
     });
   }
 
+  addSoundControllers() {
+    document.querySelector(".music__btn").addEventListener("click", (e) => {
+      e = e || window.event;
+      this.music = !this.music;
+      if (this.music) {
+        this.audio.currentTime = 0;
+        this.audio.play();
+      } else {
+        this.audio.pause();
+      }
+      e.target.classList.toggle("sound__btn--unactive");
+    });
+
+    document.querySelector(".sound").addEventListener("click", (e) => {
+      e = e || window.event;
+      e.target.classList.toggle("sound__btn--unactive");
+      this.model.soundOff();
+    })
+  }
+
   rememberWindowSize() {
     this.windowW = window.outerWidth;
     this.windowH = window.outerHeight;
@@ -192,13 +215,14 @@ class TownController {
   hidePreloadPage() {
     document.querySelector(".preload__btn").addEventListener("click", () => {
       let wrap = document.querySelector(".preload__view");
-      let audio = new Audio();
       wrap.style.animation = "fromViewedtoHidden 0.5s linear 1 forwards"
       setTimeout(() => wrap.style.display = "none", 500);
-      audio.src = "./assets/sounds/main.mp3";
-      audio.loop = true;
-      audio.volume = 0.5;
-      audio.play();
+      this.audio = new Audio();
+      this.audio.src = "./assets/sounds/main.mp3";
+      this.audio.loop = true;
+      this.audio.volume = 0.5;
+      this.audio.currentTime = 0;
+      this.audio.play();
     })
   }
 

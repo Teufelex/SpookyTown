@@ -22,6 +22,7 @@ html, body {
 
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-image: url(assets/back.jpg);
@@ -224,6 +225,8 @@ span {
 
 .new__page__wrapper {
   width: 80%;
+  font-weight: bold;
+  letter-spacing: 3px;
 }
 
 .result {
@@ -274,11 +277,54 @@ span {
   padding: 10px 20px;
   font-size: 2rem;
   margin-top: 50px;
+  background-color: rgba(0, 0, 0, 0);
+  font-family: "MyWebFont";
+  border: none;
+}
+
+.close__over:hover {
+  cursor: pointer;
+  text-shadow: 2px 2px 2px white;
+}
+
+.close__over:focus {
+  outline: none;
+}
+
+.game__sound__wrapper {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sound__btn {
+  font-family: "MyWebFont";
+  font-size: 5vmin;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  border: none;
+}
+
+.sound__btn:focus {
+  outline: none;
+}
+
+.sound__btn--unactive {
+  color: rgba(138, 138, 138, 0.699);
 }
 
 @media (orientation: portrait) {
   .preload__view {
     background-position: center;
+  }
+
+  .game__sound__wrapper {
+    position: static;
+    width: 20vw;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .game__menu {
