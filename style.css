@@ -320,6 +320,10 @@ span {
     background-position: center;
   }
 
+  .new__page__wrapper {
+    font-size: 3.5vmin;
+  }
+
   .game__sound__wrapper {
     position: static;
     width: 20vw;
