@@ -130,7 +130,7 @@ class Town {
     this.addPoints = true;
     this.checkСoincidences(y, x);
     this.walkingBears();
-    this.checkRIP(); //if something wrong <- check it
+    this.checkRIP();
     this.updateView();
     this.clickPoints = 0;
   }
@@ -426,7 +426,11 @@ class Town {
     }
   }
 
+  soundOff() {
+    this.view.updateSoundStat();
+  }
+
   resize() {
-    
+    this.view.resize();
   }
 }
